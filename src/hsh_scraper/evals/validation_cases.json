@@ -1,0 +1,597 @@
+[
+  {
+    "id": "q01",
+    "case_type": "direct",
+    "question": "Welche konsekutiven Masterstudiengänge bietet die Fakultät I der Hochschule Hannover an?",
+    "reference_answer": "Die Fakultät I bietet zwei konsekutive, drei-semestrige Masterstudiengänge an: Sensor- und Automatisierungstechnik (ESA) sowie Elektrische Energiesysteme und Elektromobilität (EEE).",
+    "source_url": "https://f1.hs-hannover.de/studium/studiengaenge-und-programme/master-studiengaenge",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Sensor- und Automatisierungstechnik (ESA)",
+      "Elektrische Energiesysteme und Elektromobilität (EEE)"
+    ],
+    "optional_facts": [
+      "Die Masterstudiengänge sind konsekutiv.",
+      "Die Masterstudiengänge dauern drei Semester."
+    ],
+    "forbidden_claims": [
+      "Weitere Masterstudiengänge der Fakultät I als konsekutive Master hinzufügen."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Antwort sollte genau die zwei Masterstudiengänge ESA und EEE nennen und keine weiteren Masterstudiengänge hinzufügen."
+  },
+  {
+    "id": "q02",
+    "case_type": "direct",
+    "question": "Ist der Bachelorstudiengang Mechatronik zulassungsfrei und welches Vorpraktikum wird verlangt?",
+    "reference_answer": "Der Bachelorstudiengang Mechatronik ist zulassungsfrei. Studienbewerber*innen müssen vor Aufnahme des Studiums ein Vorpraktikum von 6 Wochen oder eine fachbezogene Ausbildung nachweisen. Ist der Nachweis zum Immatrikulationsschluss nicht möglich, kann das Vorpraktikum bis zum Ende des 2. Semesters nachgeholt werden.",
+    "source_url": "https://f1.hs-hannover.de/studium/studiengaenge-und-programme/bachelor-studiengaenge/mechatronik-mec",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Mechatronik ist zulassungsfrei.",
+      "Es werden 6 Wochen Vorpraktikum oder eine fachbezogene Ausbildung verlangt.",
+      "Das Vorpraktikum kann bis zum Ende des 2. Semesters nachgeholt werden."
+    ],
+    "optional_facts": [
+      "Der Nachweis soll grundsätzlich vor Aufnahme des Studiums erfolgen."
+    ],
+    "forbidden_claims": [
+      "Einen Numerus clausus oder eine andere Zulassungsbeschränkung behaupten.",
+      "Eine andere Praktikumsdauer nennen."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Wichtig sind Zulassungsfreiheit, 6 Wochen Vorpraktikum bzw. fachbezogene Ausbildung und die Nachholmöglichkeit bis Ende des 2. Semesters."
+  },
+  {
+    "id": "q03",
+    "case_type": "direct",
+    "question": "Welchen Abschluss hat Mechatronik an der HsH, wann beginnt das Studium und wie lange ist die Regelstudienzeit?",
+    "reference_answer": "Mechatronik führt zum Abschluss Bachelor of Engineering (B.Eng.). Der Studienbeginn ist im Sommer- und Wintersemester möglich. Die Regelstudienzeit beträgt 7 Semester.",
+    "source_url": "https://f1.hs-hannover.de/studium/studiengaenge-und-programme/bachelor-studiengaenge/mechatronik-mec",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Abschluss Bachelor of Engineering (B.Eng.)",
+      "Studienbeginn im Sommersemester und Wintersemester",
+      "Regelstudienzeit 7 Semester"
+    ],
+    "optional_facts": [],
+    "forbidden_claims": [
+      "Einen anderen Abschluss nennen.",
+      "Nur einen Studienstart nennen."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Antwort sollte alle drei Fakten korrekt enthalten: Bachelor of Engineering (B.Eng.), Sommer- und Wintersemester, 7 Semester."
+  },
+  {
+    "id": "q04",
+    "case_type": "clarification",
+    "question": "Wie stelle ich einen Online-Antrag?",
+    "reference_answer": "Ab dem Sommersemester 2026 werden Bewerbungen und ausgewählte Anträge an der Hochschule Hannover vollständig online gestellt. Für Studieninteressierte und Bewerber:innen erfolgt das Bewerbungsverfahren künftig ausschließlich digital über das Bewerbungsportal der Hochschule Hannover. Erforderliche Unterlagen werden dort online eingereicht; ein postalischer Versand ist nicht mehr notwendig. Nach Beginn der Bewerbungsfrist können Unterlagen im Portal hochgeladen und der Bearbeitungsstatus selbst eingesehen werden. Für bereits eingeschriebene Studierende werden ab dem Sommersemester 2026 ausgewählte Antragsverfahren digitalisiert; nach dem Login liegen die Funktionen im Bereich Service → Anträge.",
+    "source_url": "https://www.hs-hannover.de/ueber-uns/organisation/akademische-angelegenheiten/studierende/online-antraege-und-bewerbung",
+    "expected_behavior": "clarify_then_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Die Frage ist mehrdeutig und sollte zwischen Bewerbung und Antrag eingeschriebener Studierender klären.",
+      "Bewerber:innen nutzen das Bewerbungsportal der Hochschule Hannover.",
+      "Erforderliche Unterlagen werden online eingereicht; postalischer Versand ist nicht nötig.",
+      "Eingeschriebene Studierende finden ausgewählte Anträge nach dem Login unter Service → Anträge."
+    ],
+    "optional_facts": [
+      "Die Umstellung gilt ab dem Sommersemester 2026.",
+      "Der Bearbeitungsstatus kann im Portal eingesehen werden."
+    ],
+    "forbidden_claims": [
+      "Eine eindeutige Antragsart annehmen, ohne die Mehrdeutigkeit zu beachten.",
+      "Ein postalisches Verfahren als notwendig darstellen."
+    ],
+    "case_difficulty": "schwer",
+    "fairness_risk": "hoch",
+    "clarification": {
+      "expected": true,
+      "selected_option": "Bitte erkläre beides: den Online-Antrag für eine Bewerbung und den Online-Antrag als bereits eingeschriebene*r Studierende*r.",
+      "clarification_text": "Die HsH-Seite behandelt beide Fälle; die Antwort soll die beiden offiziellen Wege getrennt darstellen."
+    },
+    "evaluation_notes": "Der Fall soll eine Klärung auslösen. Die finale Antwort soll Bewerbungsportal, digitale Unterlageneinreichung, Wegfall des postalischen Versands sowie bei Studierenden den Bereich Service → Anträge nennen."
+  },
+  {
+    "id": "q05",
+    "case_type": "direct",
+    "question": "Wo finde ich in der Fakultät I die Anmeldung für Studienprojekte?",
+    "reference_answer": "Die HsH belegt zwei passende Antwortpfade: Auf der Seite der Prüfungsverwaltung der Fakultät I steht im Bereich Formulare/Prüfungsangelegenheiten der Abschnitt Studienprojekte mit den Links Anmeldung Studienprojekt, Wichtige Hinweise zu Projekten bzw. Studienprojekten und Projektnummern. In den Wichtigen Hinweisen steht außerdem, dass das Projekt bzw. Studienprojekt vor Beginn im iCMS einzutragen ist und als Prüfer der allgemeine Prüfer F1 auszuwählen ist.",
+    "source_url": "https://f1.hs-hannover.de/ueber-uns/fakultaetsverwaltung/pruefungsverwaltung",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Die Anmeldung ist auf der Seite der Prüfungsverwaltung der Fakultät I zu finden.",
+      "Der relevante Bereich heißt Formulare/Prüfungsangelegenheiten.",
+      "Der Abschnitt heißt Studienprojekte.",
+      "Dort gibt es den Link Anmeldung Studienprojekt."
+    ],
+    "optional_facts": [
+      "Dort sind auch Hinweise zu Projekten bzw. Studienprojekten aufgeführt.",
+      "Dort sind auch Projektnummern aufgeführt."
+    ],
+    "forbidden_claims": [
+      "Die Anmeldung nur als allgemeine iCMS-Funktion ohne Projekt-/Studienprojektbezug beschreiben.",
+      "Projektangebote anderer Fakultäten als Antwort verwenden."
+    ],
+    "answer_variants": [
+      {
+        "id": "f1_pruefungsverwaltung_fundort",
+        "title": "Fundort auf der F1-Prüfungsverwaltungsseite",
+        "source_url": "https://f1.hs-hannover.de/ueber-uns/fakultaetsverwaltung/pruefungsverwaltung",
+        "source_policy": "exact_gold_source",
+        "accepted_source_urls": [],
+        "required_facts": [
+          "Die Anmeldung ist auf der Seite der Prüfungsverwaltung der Fakultät I zu finden.",
+          "Der relevante Bereich heißt Formulare/Prüfungsangelegenheiten.",
+          "Der Abschnitt heißt Studienprojekte.",
+          "Dort gibt es den Link Anmeldung Studienprojekt."
+        ],
+        "optional_facts": [
+          "Dort sind auch Hinweise zu Projekten bzw. Studienprojekten aufgeführt.",
+          "Dort sind auch Projektnummern aufgeführt."
+        ],
+        "forbidden_claims": [
+          "Projektangebote anderer Fakultäten als Antwort verwenden."
+        ]
+      },
+      {
+        "id": "icms_operatives_verfahren",
+        "title": "Operative Anmeldung des Studienprojekts in iCMS",
+        "source_url": "https://f1.hs-hannover.de/fileadmin/HsH/Fakultaet_I/20_Dokumente/60_Pruefungsamt/Wichtige_Hinweise_fuer_Projekte_bzw._Studienprojekte.pdf",
+        "source_policy": "exact_gold_source",
+        "accepted_source_urls": [],
+        "required_facts": [
+          "Das Projekt bzw. Studienprojekt soll vor Beginn im iCMS eingetragen werden.",
+          "Für Projekte bzw. Studienprojekte der Fakultät I ist das Antragsformular mit dem darin enthaltenen Verfahren anzuwenden.",
+          "Im iCMS soll als Prüfer der allgemeine Prüfer F1 ausgewählt werden."
+        ],
+        "optional_facts": [
+          "Es gibt Ausnahmen für MEC, EWI und MAT mit Prüfer F2 oder Prüfer F4.",
+          "Der zweite Betreuende wird durch den Erstbetreuenden benannt und muss nicht im iCMS eingetragen werden."
+        ],
+        "forbidden_claims": [
+          "Die iCMS-Antwort nur als allgemeine Prüfungs- oder Veranstaltungsanmeldung ohne Studienprojektbezug darstellen.",
+          "Projektangebote anderer Fakultäten als Antwort verwenden."
+        ]
+      }
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "mittel",
+    "evaluation_notes": "Beide HsH-belegten Antwortpfade sind gültig: der Fundort auf der F1-Prüfungsverwaltungsseite oder das operative Verfahren aus dem PDF mit iCMS-Eintrag vor Beginn. Die Antwort darf das nicht mit allgemeinen Projektangeboten anderer Fakultäten verwechseln."
+  },
+  {
+    "id": "q06",
+    "case_type": "direct",
+    "question": "An wen wende ich mich in der Fakultät I, wenn ich Probleme bei der Prüfungsanmeldung habe?",
+    "reference_answer": "Für allgemeine Fragen, Prüfungsanmeldungen, iCMS, 15 CP Überprüfung und Umbuchungen ist in der Prüfungsverwaltung der Fakultät I Stephan Rittmüller genannt. Die Adresse lautet F1-Pruefungsverwaltung(at)hs-hannover.de. Die Sprechzeiten sind Montag, Dienstag und Freitag nach Vereinbarung per E-Mail.",
+    "source_url": "https://f1.hs-hannover.de/ueber-uns/fakultaetsverwaltung/pruefungsverwaltung",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Stephan Rittmüller ist die genannte Ansprechperson.",
+      "Der Kontext ist die Prüfungsverwaltung der Fakultät I.",
+      "Die Funktionsadresse lautet F1-Pruefungsverwaltung(at)hs-hannover.de."
+    ],
+    "optional_facts": [
+      "Die Zuständigkeit umfasst Prüfungsanmeldungen.",
+      "Die Quelle nennt auch iCMS, 15 CP Überprüfung und Umbuchungen.",
+      "Sprechzeiten sind Montag, Dienstag und Freitag nach Vereinbarung per E-Mail."
+    ],
+    "forbidden_claims": [
+      "Eine andere Ansprechperson als primäre zuständige Person nennen.",
+      "Nicht belegte feste Sprechzeiten oder persönliche Termine erfinden."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "mittel",
+    "evaluation_notes": "Die Antwort soll Stephan Rittmüller, Prüfungsanmeldungen, die Funktionsadresse und die Sprechzeiten nennen."
+  },
+  {
+    "id": "q07",
+    "case_type": "direct",
+    "question": "Wie kann ich mich über das WIR-Stipendium informieren und einen Antrag stellen?",
+    "reference_answer": "Für das WIR-Stipendium gilt die Bewerbungsfrist 1. April bis 31. Mai eines jeweiligen Jahres. Die HsH-Seite bittet darum, die Antragstellung erstmals ausschließlich online vorzunehmen. Der Antrag für das WIR-Stipendium gilt automatisch auch für das Landesstipendium Niedersachsen des jeweiligen Jahres. Das Förderjahr des WIR-Stipendiums beginnt am 1. Oktober und endet mit Ablauf des 30. September eines jeweiligen Jahres.",
+    "source_url": "https://www.hs-hannover.de/studium/studieren-an-der-hsh/rund-ums-studium/stipendien/wir-stipendium-studierende/infos-antrag",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Bewerbungsfrist ist 1. April bis 31. Mai.",
+      "Die HsH-Seite bittet darum, die Antragstellung erstmals ausschließlich online vorzunehmen.",
+      "Der WIR-Stipendium-Antrag gilt automatisch auch für das Landesstipendium Niedersachsen.",
+      "Das Förderjahr läuft vom 1. Oktober bis zum 30. September."
+    ],
+    "optional_facts": [
+      "Die Frist gilt für das jeweilige Jahr."
+    ],
+    "forbidden_claims": [
+      "Eine postalische Antragstellung aus der HsH-Seite ableiten.",
+      "Eine andere Bewerbungsfrist nennen."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Antwort muss Bewerbungsfrist, den von der HsH genannten Online-Antrag, automatische Mitberücksichtigung für das Landesstipendium und Förderjahr korrekt wiedergeben."
+  },
+  {
+    "id": "q08",
+    "case_type": "direct",
+    "question": "Wann muss ich den Semesterbeitrag für die Rückmeldung bezahlen?",
+    "reference_answer": "Die Rückmeldung findet für das Sommersemester vom 01.01. bis 31.01. eines jeden Jahres und für das Wintersemester vom 15.06. bis 15.07. eines jeden Jahres statt. Für die Rückmeldung ist die Überweisung des Semesterbeitrags oder des Semesterbeitrags plus Langzeitgebühr erforderlich. Die Rückmeldung gilt nur als erfolgt, wenn der Betrag auf dem Konto der Hochschule eingegangen ist.",
+    "source_url": "https://www.hs-hannover.de/ueber-uns/organisation/akademische-angelegenheiten/studierende/semesterbeitrag-und-rueckmeldung",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Rückmeldefrist Sommersemester: 01.01. bis 31.01.",
+      "Rückmeldefrist Wintersemester: 15.06. bis 15.07.",
+      "Der Semesterbeitrag muss überwiesen werden.",
+      "Die Rückmeldung gilt erst mit Zahlungseingang auf dem Hochschulkonto als erfolgt."
+    ],
+    "optional_facts": [
+      "Bei Langzeitgebühr ist Semesterbeitrag plus Langzeitgebühr zu überweisen."
+    ],
+    "forbidden_claims": [
+      "Nur das Überweisungsdatum statt Zahlungseingang als ausreichend darstellen.",
+      "Andere Rückmeldefristen nennen."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Antwort muss die beiden Rückmeldefristen und die Bedingung des Zahlungseingangs auf dem Hochschulkonto nennen."
+  },
+  {
+    "id": "q09",
+    "case_type": "direct",
+    "question": "Wo befindet sich der IT-ServiceDesk der HsH am Campus Linden und wie erreiche ich ihn?",
+    "reference_answer": "Der IT-ServiceDesk der Hochschul-IT für Campus Linden und Kleefeld hat für alle Standorte Öffnungszeiten Montag bis Donnerstag zwischen 10 und 15 Uhr. Anfragen sollen bevorzugt per E-Mail an support-it@hs-hannover.de gestellt werden. Alternativ ist die Hotline Montag bis Donnerstag zwischen 10 und 15 Uhr unter der Durchwahl 4444 erreichbar. Der ServiceDesk Linden befindet sich in Gebäude 1B, Raum 1B.0.43.",
+    "source_url": "https://service.it.hs-hannover.de/de/willkommen/",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Der ServiceDesk Linden befindet sich in Gebäude 1B, Raum 1B.0.43.",
+      "Anfragen sollen bevorzugt per E-Mail an support-it@hs-hannover.de gestellt werden.",
+      "Die Hotline ist unter der Durchwahl 4444 erreichbar."
+    ],
+    "optional_facts": [
+      "Öffnungszeiten Montag bis Donnerstag zwischen 10 und 15 Uhr.",
+      "Die Öffnungszeiten gelten für alle Standorte."
+    ],
+    "forbidden_claims": [
+      "Einen anderen Raum am Campus Linden nennen.",
+      "Nicht belegte Öffnungstage ergänzen."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Antwort soll Öffnungszeiten, E-Mail, Hotline und Standort Linden nennen. Persönliche Beratung darf ohne Termin erwähnt werden, wenn sie korrekt auf die Quelle bezogen ist."
+  },
+  {
+    "id": "q10",
+    "case_type": "direct",
+    "question": "Was sind die Öffnungszeiten der Mensa Campus Linden und wann ist die Essenausgabe?",
+    "reference_answer": "Dazu nennt die HsH-Seite selbst keine konkreten Öffnungszeiten oder Essenausgabezeiten. Die HsH-Seite nennt nur die Mensa Campus Linden am Ricklinger Stadtweg 120, erreichbar mit den Stadtbahnlinien 3 und 7 bis zur Haltestelle Linden Fischerhof, und verweist für Lageplan, Öffnungszeiten und Speiseplan auf externe Seiten des Studentenwerks Hannover. Außerdem steht dort, dass Mensa-to-go nur mit Vorbestellung in der App Studi|Futter möglich ist und dass bei Mensa-to-stay keine Essensvorbestellung nötig ist, aber die Studi|Futter-App zur Buchung der Besuchszeit benötigt wird.",
+    "source_url": "https://f4.hs-hannover.de/service/formulare-und-informationen/sonstiges/mensa",
+    "expected_behavior": "missing_detail_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Die HsH-Seite nennt keine konkreten Öffnungszeiten oder Essenausgabezeiten.",
+      "Die HsH-Seite verweist für Lageplan, Öffnungszeiten und Speiseplan auf externe Seiten des Studentenwerks Hannover.",
+      "Die Mensa Campus Linden liegt am Ricklinger Stadtweg 120."
+    ],
+    "optional_facts": [
+      "Erreichbar mit den Stadtbahnlinien 3 und 7 bis Linden/Fischerhof.",
+      "Mensa-to-go ist nur mit Vorbestellung in Studi|Futter möglich.",
+      "Bei Mensa-to-stay ist keine Essensvorbestellung nötig, aber die App wird zur Buchung der Besuchszeit benötigt."
+    ],
+    "forbidden_claims": [
+      "Konkrete Öffnungszeiten oder Essenausgabezeiten als HsH-belegt ausgeben.",
+      "Studentenwerk-Zeiten übernehmen, ohne sie als externe Information außerhalb der HsH-Quelle abzugrenzen."
+    ],
+    "case_difficulty": "schwer",
+    "fairness_risk": "hoch",
+    "evaluation_notes": "Negativ-/Abgrenzungsfall: Weil nur HsH-Quellen erlaubt sind, soll das RAG-System nicht die externen Studentenwerk-Zeiten übernehmen oder erfinden. Erwartet ist die klare Aussage, dass die konkrete Öffnungszeit und Essenausgabezeit nicht auf der HsH-Seite selbst steht; zusätzlich dürfen die belegten HsH-Informationen zur Lage und zur Studi|Futter-App genannt werden.",
+    "tags": [
+      "negativfall"
+    ]
+  },
+  {
+    "id": "q11",
+    "case_type": "direct",
+    "question": "Wo verweist die Fakultät IV für Prüfungsanmeldung und Notenspiegel im Bereich Wirtschaftsinformatik?",
+    "reference_answer": "Die Fakultät IV führt im Studium-Service der Abteilung Wirtschaftsinformatik den Link iCMS – Online Anmeldung Prüfungen auf. Dieser Link wird als Online-Portal der HsH für Prüfungsanmeldung, Notenspiegel usw. beschrieben.",
+    "source_url": "https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Die relevante Stelle liegt im Studium-Service der Abteilung Wirtschaftsinformatik der Fakultät IV.",
+      "Der Link heißt iCMS – Online Anmeldung Prüfungen.",
+      "iCMS wird als Online-Portal der HsH für Prüfungsanmeldung und Notenspiegel beschrieben."
+    ],
+    "optional_facts": [],
+    "forbidden_claims": [
+      "Nur allgemein Campusmanagement nennen, ohne iCMS oder Notenspiegel zu erwähnen.",
+      "Eine andere Fakultät als Quelle verwenden."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Antwort soll iCMS als Online-Portal der HsH für Prüfungsanmeldung und Notenspiegel nennen und sich auf die Fakultät-IV-Seite beziehen."
+  },
+  {
+    "id": "q12",
+    "case_type": "direct",
+    "question": "Gibt es Parkplätze am HsH-Campus Linden?",
+    "reference_answer": "Ja. Zum Campus Linden schreibt die HsH, dass in unmittelbarer Nähe der Hochschule Parkplätze zur Verfügung stehen. Die Anfahrt erfolgt über die Stammestraße oder den Lodemannweg.",
+    "source_url": "https://www.hs-hannover.de/ueber-uns/organisation/gebaeudemanagement/standorte/standorte-und-anfahrt/standort-linden",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Ja, in unmittelbarer Nähe der Hochschule stehen Parkplätze zur Verfügung.",
+      "Die Anfahrt erfolgt über die Stammestraße oder den Lodemannweg."
+    ],
+    "optional_facts": [],
+    "forbidden_claims": [
+      "Eine garantierte Verfügbarkeit freier Parkplätze behaupten.",
+      "Eine konkrete Parkplatzanzahl erfinden."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Antwort soll 'in unmittelbarer Nähe' und die Anfahrt über Stammestraße oder Lodemannweg nennen. Keine Aussage über Anzahl, Verfügbarkeit zu Stoßzeiten oder garantierte freie Plätze ergänzen."
+  },
+  {
+    "id": "q13",
+    "case_type": "direct",
+    "question": "Gibt es Lern- oder Arbeitsplätze in den Bibliotheken der HsH?",
+    "reference_answer": "Ja. Die Bibliothek der HsH schreibt im A-Z-Bereich unter Arbeitsplätze, dass Arbeitsplätze in Bibliotheken ohne Voranmeldung benutzt werden können.",
+    "source_url": "https://www.hs-hannover.de/ueber-uns/organisation/bibliothek/a-z",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Ja, es gibt Arbeitsplätze in den Bibliotheken.",
+      "Die Arbeitsplätze können ohne Voranmeldung benutzt werden."
+    ],
+    "optional_facts": [
+      "Die Aussage steht im A-Z-Bereich unter Arbeitsplätze."
+    ],
+    "forbidden_claims": [
+      "Nicht belegte Gruppenraum- oder Buchungsregeln ergänzen.",
+      "Eine Voranmeldung als notwendig darstellen."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "mittel",
+    "evaluation_notes": "Die Antwort soll nur die belegte Aussage zu Arbeitsplätzen in Bibliotheken enthalten. Keine nicht belegten Gruppenraum- oder Buchungsregeln hinzufügen."
+  },
+  {
+    "id": "q14",
+    "case_type": "direct",
+    "question": "Wie viele Bachelorstudiengänge bietet die Fakultät II der HsH an?",
+    "reference_answer": "Die Fakultät II bietet 11 praxisnahe Bachelor-Studiengänge in den Bereichen Maschinenbau und Bioverfahrenstechnik an. Die Regelstudienzeit von 7 Semestern beinhaltet ein Praxissemester sowie die Anfertigung der Bachelor-Arbeit. Das Angebot umfasst duale und nicht duale Studiengänge.",
+    "source_url": "https://f2.hs-hannover.de/studium/bachelor-studiengaenge",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Die Fakultät II bietet 11 Bachelorstudiengänge an.",
+      "Die Studiengänge liegen in den Bereichen Maschinenbau und Bioverfahrenstechnik."
+    ],
+    "optional_facts": [
+      "Die Regelstudienzeit beträgt 7 Semester.",
+      "Das Studium beinhaltet ein Praxissemester und die Bachelor-Arbeit.",
+      "Es gibt duale und nicht duale Studiengänge."
+    ],
+    "forbidden_claims": [
+      "Eine andere Anzahl an Bachelorstudiengängen nennen.",
+      "Die Aussage auf eine andere Fakultät beziehen."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Antwort muss die Zahl 11 nennen und sich eindeutig auf die Fakultät II beziehen. Zusätzlich dürfen 7 Semester, Praxissemester, Bachelor-Arbeit sowie duale/nicht duale Studiengänge genannt werden."
+  },
+  {
+    "id": "q15",
+    "case_type": "direct",
+    "question": "Welches Fachgebiet hat Prof. Dr.-Ing. Alexander Kreim an der HsH?",
+    "reference_answer": "Prof. Dr.-Ing. Alexander Kreim ist Professor in der Abteilung Elektro- und Informationstechnik (F1E). Sein Fachgebiet ist Elektrische Antriebe und Automatisierungstechnik (EIT-EAA). Sein Raum ist 1E.1.05 am Ricklinger Stadtweg 120 in Hannover.",
+    "source_url": "https://www.hs-hannover.de/service/personenfinder/person/1000005806",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Das Fachgebiet ist Elektrische Antriebe und Automatisierungstechnik.",
+      "Die Antwort bezieht sich auf Prof. Dr.-Ing. Alexander Kreim."
+    ],
+    "optional_facts": [
+      "Er ist Professor in der Abteilung Elektro- und Informationstechnik (F1E).",
+      "Der Raum ist 1E.1.05 am Ricklinger Stadtweg 120."
+    ],
+    "forbidden_claims": [
+      "Ein anderes Fachgebiet nennen.",
+      "Kontakt- oder Raumdaten erfinden."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Antwort soll das Fachgebiet Elektrische Antriebe und Automatisierungstechnik nennen. Abteilung und Raum dürfen ergänzt werden, müssen aber zur Personenfinder-Quelle passen."
+  },
+  {
+    "id": "q16",
+    "case_type": "direct",
+    "question": "Wie viele Bachelor- und Masterstudiengänge gibt es an der Fakultät III der HsH?",
+    "reference_answer": "Die Fakultät III ist die Fakultät für Medien, Information und Design. Sie nennt 15 Bachelorstudiengänge in den Bereichen Design und Medien sowie Information und Kommunikation. Außerdem nennt sie 4 Master-Studiengänge in diesen Bereichen.",
+    "source_url": "https://f3.hs-hannover.de/",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Fakultät III nennt 15 Bachelorstudiengänge.",
+      "Fakultät III nennt 4 Masterstudiengänge."
+    ],
+    "optional_facts": [
+      "Fakultät III ist Medien, Information und Design.",
+      "Die Studiengänge liegen in den Bereichen Design und Medien sowie Information und Kommunikation."
+    ],
+    "forbidden_claims": [
+      "Die Zahlen einer anderen Fakultät verwenden.",
+      "Bachelor- und Masterzahlen vertauschen."
+    ],
+    "case_difficulty": "leicht",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Antwort soll Fakultät III nicht mit Fakultät I oder II verwechseln. Erwartet werden 15 Bachelorstudiengänge und 4 Master-Studiengänge gemäß Startseite der Fakultät III."
+  },
+  {
+    "id": "q17",
+    "case_type": "direct",
+    "question": "Gibt es Informationen zur 15-CP-Überprüfung in der Fakultät I und ist dort ein freier Versuch beschrieben?",
+    "reference_answer": "Auf der Seite der Prüfungsverwaltung der Fakultät I ist Stephan Rittmüller als Ansprechpartner für allgemeine Fragen, Prüfungsanmeldungen, iCMS, 15 CP Überprüfung und Umbuchungen genannt. Die Seite beschreibt an dieser Stelle keine Freiversuchsregel und keine Details dazu, dass es wegen 15 CP einen freien Versuch gibt.",
+    "source_url": "https://f1.hs-hannover.de/ueber-uns/fakultaetsverwaltung/pruefungsverwaltung",
+    "expected_behavior": "missing_detail_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Die Quelle nennt 15 CP Überprüfung im Kontext der Prüfungsverwaltung der Fakultät I.",
+      "Stephan Rittmüller ist dort als Ansprechpartner genannt.",
+      "Die Quelle beschreibt keine Freiversuchsregel und keine Details zu einem freien Versuch wegen 15 CP."
+    ],
+    "optional_facts": [
+      "Die Quelle nennt auch allgemeine Fragen, Prüfungsanmeldungen, iCMS und Umbuchungen."
+    ],
+    "forbidden_claims": [
+      "Eine Freiversuchsregel aus der Quelle ableiten oder erfinden.",
+      "Konkrete Folgen der 15-CP-Überprüfung behaupten, die in der Quelle nicht stehen."
+    ],
+    "case_difficulty": "schwer",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Negativ-/Abgrenzungsfall: Nur die 15 CP Überprüfung und die Ansprechperson sind auf der Quelle belegt. Keine Details zu einem freien Versuch erfinden.",
+    "tags": [
+      "fehlendes-detail"
+    ]
+  },
+  {
+    "id": "q18",
+    "case_type": "direct",
+    "question": "Wie viele Studierende studieren ungefähr an der Hochschule Hannover?",
+    "reference_answer": "Offizielle HsH-Seiten nennen unterschiedliche gerundete Angaben: Die Profilseite und die Seite Studierende nennen rund 9.000 Studierende; die allgemeine Über-uns-Seite nennt mehr als 10.000 Studierende. Eine Antwort ist gültig, wenn sie eine dieser offiziellen gerundeten HsH-Angaben korrekt wiedergibt und nicht als exakte Zahl ausgibt.",
+    "source_url": "https://www.hs-hannover.de/ueber-uns/profil",
+    "expected_behavior": "direct_answer",
+    "source_policy": "accepted_sources",
+    "accepted_source_urls": [
+      "https://www.hs-hannover.de/ueber-uns/profil/wer-wir-sind/studierende",
+      "https://www.hs-hannover.de/ueber-uns"
+    ],
+    "required_facts": [
+      "Die Antwort nennt eine offizielle gerundete HsH-Angabe zur Studierendenzahl."
+    ],
+    "optional_facts": [
+      "Die Profilseite nennt außerdem rund 1.300 Beschäftigte.",
+      "Wenn mehrere HsH-Seiten herangezogen werden, sollte die Antwort die unterschiedlichen offiziellen Rundungen einordnen."
+    ],
+    "forbidden_claims": [
+      "Eine exakte Studierendenzahl nennen, die die Quelle nicht belegt.",
+      "Eine nicht-HsH-Quelle für die Studierendenzahl verwenden."
+    ],
+    "answer_variants": [
+      {
+        "id": "profil_rund_9000",
+        "title": "Profilseite: rund 9.000 Studierende",
+        "source_url": "https://www.hs-hannover.de/ueber-uns/profil",
+        "source_policy": "exact_gold_source",
+        "accepted_source_urls": [
+          "https://www.hs-hannover.de/ueber-uns/profil/wer-wir-sind/studierende"
+        ],
+        "required_facts": [
+          "Die HsH nennt rund 9.000 Studierende."
+        ],
+        "optional_facts": [
+          "Die HsH nennt außerdem rund 1.300 Beschäftigte."
+        ],
+        "forbidden_claims": [
+          "Die rund 9.000 als exakte Zahl darstellen."
+        ]
+      },
+      {
+        "id": "ueber_uns_mehr_als_10000",
+        "title": "Über-uns-Seite: mehr als 10.000 Studierende",
+        "source_url": "https://www.hs-hannover.de/ueber-uns",
+        "source_policy": "exact_gold_source",
+        "accepted_source_urls": [],
+        "required_facts": [
+          "Die HsH nennt mehr als 10.000 Studierende."
+        ],
+        "optional_facts": [
+          "Die Aussage steht auf der allgemeinen Über-uns-Seite."
+        ],
+        "forbidden_claims": [
+          "Mehr als 10.000 als exakte Zahl darstellen."
+        ]
+      }
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "mittel",
+    "evaluation_notes": "Mehrere offizielle HsH-Seiten nennen unterschiedliche gerundete Angaben. Deshalb sind rund 9.000 und mehr als 10.000 gültige HsH-belegte Antwortpfade, solange die Antwort die Angabe nicht als exakte Zahl ausgibt."
+  },
+  {
+    "id": "q19",
+    "case_type": "direct",
+    "question": "Welche Wahlpflichtmöglichkeiten nennt die HsH im Bachelorstudiengang Maschinenbau?",
+    "reference_answer": "Im Studiengang Maschinenbau wählen Studierende nach den ersten drei Semestern einen von drei Studienschwerpunkten: Allgemeiner Maschinenbau, Intelligente Produktionssysteme oder Nachhaltige Werkstoffe, Produkte und Prozesse. Im Schwerpunkt Allgemeiner Maschinenbau werden individuelle Interessen durch vier Wahlpflichtmodule aus über 20 Wahlmöglichkeiten vertieft. In den Schwerpunkten Intelligente Produktionssysteme sowie Nachhaltige Werkstoffe, Produkte und Prozesse können jeweils in zwei Wahlpflichtmodulen und einem Projekt individuelle Schwerpunkte gesetzt werden.",
+    "source_url": "https://f2.hs-hannover.de/studium/bachelor-studiengaenge/maschinenbau-mab",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Nach den ersten drei Semestern wird einer von drei Studienschwerpunkten gewählt.",
+      "Die drei Studienschwerpunkte heißen Allgemeiner Maschinenbau, Intelligente Produktionssysteme sowie Nachhaltige Werkstoffe, Produkte und Prozesse.",
+      "Im Schwerpunkt Allgemeiner Maschinenbau gibt es vier Wahlpflichtmodule aus über 20 Wahlmöglichkeiten.",
+      "In den beiden anderen Schwerpunkten gibt es jeweils zwei Wahlpflichtmodule und ein Projekt."
+    ],
+    "optional_facts": [],
+    "forbidden_claims": [
+      "Konkrete Modulnamen erfinden, die die Quelle an dieser Stelle nicht nennt.",
+      "Nur allgemein auf Prüfungsordnungen verweisen, ohne die genannten Studienschwerpunkte zu beantworten."
+    ],
+    "case_difficulty": "schwer",
+    "fairness_risk": "mittel",
+    "evaluation_notes": "Die Antwort muss die drei Studienschwerpunkte korrekt berücksichtigen: Allgemeiner Maschinenbau mit vier Wahlpflichtmodulen aus über 20 Wahlmöglichkeiten; Intelligente Produktionssysteme mit zwei Wahlpflichtmodulen und einem Projekt; Nachhaltige Werkstoffe, Produkte und Prozesse ebenfalls mit zwei Wahlpflichtmodulen und einem Projekt. Keine konkreten Modulnamen erfinden, weil die Quelle an dieser Stelle keine konkreten Modulnamen nennt."
+  },
+  {
+    "id": "q20",
+    "case_type": "direct",
+    "question": "Welche Informationen nennt die HsH in der Meldung „Schulungsangebot für Tutor*innen ab 13. Februar 2019“?",
+    "reference_answer": "Die HsH meldet ein fakultätsübergreifendes Schulungsangebot für Tutor*innen des Zentrums für Lehre und Beratung. Die Quelle nennt Tutor*innen aus höheren Semestern der Bachelor- und Master-Studiengänge, denen Schulungen angeboten werden, um eigene Kompetenzen auszubauen und Erfahrungen zu sammeln. Die Teilnahme an den Modulen ist freiwillig und sollte möglichst vorher mit den verantwortlichen Lehrenden abgesprochen werden, damit eventuell anfallende Mehrstunden vergütet und im Vertrag berücksichtigt werden können.",
+    "source_url": "https://www.hs-hannover.de/ueber-uns/organisation/kom/aktuelles/schulungsangebot-fuer-tutorinnen-ab-13-februar-2019",
+    "expected_behavior": "direct_answer",
+    "source_policy": "exact_gold_source",
+    "accepted_source_urls": [],
+    "required_facts": [
+      "Das Zentrum für Lehre und Beratung bietet ein fakultätsübergreifendes Schulungsangebot für Tutor*innen an.",
+      "Die Quelle nennt ein Schulungsangebot für Tutor*innen aus höheren Semestern der Bachelor- und Master-Studiengänge.",
+      "Die Teilnahme sollte möglichst vorher mit den verantwortlichen Lehrenden abgesprochen werden."
+    ],
+    "optional_facts": [
+      "Die Teilnahme an den Modulen ist freiwillig.",
+      "Die Absprache ist relevant, damit eventuell anfallende Mehrstunden vergütet und im Vertrag berücksichtigt werden können.",
+      "Das Schulungsangebot soll Kompetenzen ausbauen und Erfahrung ermöglichen."
+    ],
+    "forbidden_claims": [
+      "Ein konkretes Bewerbungsformular oder Bewerbungsverfahren erfinden.",
+      "Eine aktuelle Bewerbungsfrist aus der Quelle ableiten."
+    ],
+    "case_difficulty": "mittel",
+    "fairness_risk": "niedrig",
+    "evaluation_notes": "Die Frage ist exakt auf die HsH-Meldung vom 14.02.2019 ausgerichtet. Die Antwort darf kein Bewerbungsverfahren oder eine aktuelle Bewerbungsfrist erfinden."
+  }
+]

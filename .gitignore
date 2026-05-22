@@ -1,0 +1,32 @@
+.DS_Store
+.env
+config/.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+src/hsh_scraper/.venv/
+hsh_scraper/.venv/
+
+# Runtime services and generated local artifacts
+qdrant_data/
+artifacts/
+tmp/
+output/
+
+# Generated corpus data
+data/ingested/
+data/curated/
+data/curated_report.json
+data/url_decisions.db
+data/ingested_backup*.tar.gz
+data/ingested_backup*.tar.xz
+
+# Legacy generated locations kept ignored for older local checkouts
+hsh_scraper/data/ingested/
+hsh_scraper/data/curated/
+hsh_scraper/data/curated_report.json
+hsh_scraper/data/ingested_backup*.tar.gz
+hsh_scraper/data/ingested_backup*.tar.xz
+hsh_scraper/hsh_vectors*.parquet
+hsh_scraper/evals/results/

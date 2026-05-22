@@ -1,0 +1,13 @@
+crawl4ai[all]
+pymupdf4llm
+python-slugify
+openpyxl
+httpx
+qdrant-client
+fastembed
+langchain-text-splitters
+openai
+python-dotenv
+pyarrow
+streamlit
+pytest
