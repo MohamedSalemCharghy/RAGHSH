@@ -38,6 +38,7 @@ try:
         ROLLEN,
         RagPipelineConfig,
         SPARSE_MODEL,
+        clean_answer_text,
         create_reranker,
         prepare_chat_turn,
         request_answer_sync,
@@ -67,6 +68,7 @@ except ImportError:
         ROLLEN,
         RagPipelineConfig,
         SPARSE_MODEL,
+        clean_answer_text,
         create_reranker,
         prepare_chat_turn,
         request_answer_sync,
@@ -254,7 +256,7 @@ def stream_response(
 
         # UI aktualisieren
         if answer_parts:
-            answer_placeholder.markdown("".join(answer_parts))
+            answer_placeholder.markdown(clean_answer_text("".join(answer_parts)))
 
     # Restlichen Buffer leeren
     if buffer:
@@ -265,9 +267,9 @@ def stream_response(
 
     # Letztes UI-Update
     if answer_parts:
-        answer_placeholder.markdown("".join(answer_parts))
+        answer_placeholder.markdown(clean_answer_text("".join(answer_parts)))
 
-    return "".join(answer_parts)
+    return clean_answer_text("".join(answer_parts))
 
 
 def inject_custom_styles() -> None:
@@ -532,6 +534,14 @@ def render_timings(timings: dict[str, float] | None) -> None:
             st.markdown(f"- **{label}**: {seconds:.2f}s")
 
 
+def reset_chat_state() -> None:
+    """Clear all chat state so the first post-reset question starts fresh."""
+    st.session_state.messages = []
+    st.session_state.conversation_memory = []
+    st.session_state.pending_query_assist = None
+    st.session_state.last_turn_state = None
+
+
 def run_routed_turn(question: str, route: dict[str, str]) -> None:
     """Antwortet auf Anschlussfragen direkt aus dem letzten Turn-Zustand."""
     answer = route.get("response", "")
@@ -785,9 +795,7 @@ def render_sidebar(modelle: list[str]) -> dict[str, str]:
             render_conversation_memory(st.session_state.get("conversation_memory", []))
 
             if st.button("Chat zurücksetzen", use_container_width=True):
-                st.session_state.messages = []
-                st.session_state.conversation_memory = []
-                st.session_state.pending_query_assist = None
+                reset_chat_state()
                 st.rerun()
         else:
             st.info(

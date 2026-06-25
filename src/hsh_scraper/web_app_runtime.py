@@ -89,6 +89,14 @@ LOW_SUPPORT_TITLE_MARKERS = (
     "formular",
     "portal",
 )
+SOURCE_HEADING_RE = re.compile(
+    r"(?im)^[ \t]*(?:#{1,6}[ \t]+)?(?:\*\*)?quellen(?:\*\*)?[ \t]*:(?:\*\*)?[ \t]*$"
+)
+POST_SOURCE_SECTION_RE = re.compile(
+    r"(?im)^[ \t]*(?:#{1,6}[ \t]+)?(?:\*\*)?"
+    r"(?:hinweis|fakultäts-hinweis|fakultaets-hinweis|aktuelle informationen|weitere informationen)"
+    r"(?:\*\*)?[ \t]*:(?:\*\*)?[ \t]*$"
+)
 
 
 @dataclass(frozen=True)
@@ -146,6 +154,46 @@ def normalize_pipeline_config(
             rag_followup_enabled=base.rag_followup_enabled,
         )
     return base.normalized(fallback_top_k=top_k)
+
+
+def _collapse_consecutive_duplicate_paragraphs(text: str) -> str:
+    paragraphs = re.split(r"\n{2,}", text.strip())
+    collapsed: list[str] = []
+    previous_normalized = ""
+    for paragraph in paragraphs:
+        normalized = re.sub(r"\s+", " ", paragraph).strip().casefold()
+        if normalized and normalized == previous_normalized:
+            continue
+        collapsed.append(paragraph.strip())
+        previous_normalized = normalized
+    return "\n\n".join(collapsed)
+
+
+def clean_answer_text(answer: str) -> str:
+    """Trim model run-ons that repeat terminal source or hint sections."""
+    text = (answer or "").replace("\r\n", "\n").replace("\r", "\n").strip()
+    if not text:
+        return ""
+
+    source_matches = list(SOURCE_HEADING_RE.finditer(text))
+    if source_matches:
+        first_source = source_matches[0]
+        trim_at: int | None = None
+        repeated_source = source_matches[1].start() if len(source_matches) > 1 else None
+        post_source_section = POST_SOURCE_SECTION_RE.search(text, first_source.end())
+
+        # Some models continue after the first final source block; keep the first complete answer.
+        if post_source_section and repeated_source is not None:
+            trim_at = min(post_source_section.start(), repeated_source)
+        elif post_source_section:
+            trim_at = post_source_section.start()
+        elif repeated_source is not None:
+            trim_at = repeated_source
+
+        if trim_at is not None:
+            text = text[:trim_at].rstrip()
+
+    return _collapse_consecutive_duplicate_paragraphs(text).strip()
 
 
 def build_system_prompt(rolle: str, fakultaet: str) -> str:
@@ -459,7 +507,7 @@ def request_answer_sync(
         temperature=temperature,
     )
     msg = response.choices[0].message
-    return msg.content or ""
+    return clean_answer_text(msg.content or "")
 
 
 def prepare_chat_turn(
@@ -631,6 +679,7 @@ __all__ = [
     "RagPipelineConfig",
     "build_streamlit_llm_messages",
     "build_system_prompt",
+    "clean_answer_text",
     "create_reranker",
     "normalize_pipeline_config",
     "prepare_chat_turn",

@@ -174,6 +174,24 @@ def test_run_remaining_validation_cases_produces_result_for_every_loaded_case(
     assert summary["failure_type_counts"] == {}
 
 
+def test_single_case_validation_run_remembers_selected_case(monkeypatch, tmp_path: Path) -> None:
+    selected_case = next(case for case in validation_system.load_eval_cases() if case.id == "q05")
+    monkeypatch.setattr(validation_system, "RESULTS_DIR", tmp_path)
+
+    state = validation_system.start_validation_run(
+        chatbot_model="chatbot",
+        evaluator_model="judge",
+        cases=[selected_case],
+        store_in_session=False,
+    )
+
+    assert state["case_ids"] == ["q05"]
+    assert validation_system._cases_for_state(state, validation_system.load_eval_cases()) == [selected_case]
+
+    manifest = json.loads((Path(state["run_dir"]) / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["case_count"] == 1
+
+
 def test_run_remaining_validation_cases_does_not_skip_missing_cases_before_saved_index(
     monkeypatch, tmp_path: Path
 ) -> None:

@@ -121,7 +121,7 @@ try:
     )
     from .rag_followup import maybe_expand_results_with_followup
     from .turn_router import build_turn_state, route_turn
-    from .web_app_runtime import RagPipelineConfig
+    from .web_app_runtime import RagPipelineConfig, clean_answer_text
 except ImportError:
     from paths import CONFIG_DIR
     from conversation_memory import (
@@ -149,7 +149,7 @@ except ImportError:
     )
     from rag_followup import maybe_expand_results_with_followup
     from turn_router import build_turn_state, route_turn
-    from web_app_runtime import RagPipelineConfig
+    from web_app_runtime import RagPipelineConfig, clean_answer_text
 
 # ---------------------------------------------------------------------------
 # Konfiguration
@@ -299,7 +299,7 @@ def ask_llm(
     )
     msg = response.choices[0].message
     reasoning = getattr(msg, "reasoning_content", "") or ""
-    answer    = msg.content or ""
+    answer    = clean_answer_text(msg.content or "")
     return answer, reasoning
 
 

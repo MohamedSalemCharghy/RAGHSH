@@ -552,6 +552,8 @@ def _empty_validation_state() -> dict[str, Any]:
         "run_id": "",
         "run_dir": "",
         "case_index": 0,
+        # Keeps single-case validation runs pinned across Streamlit reruns.
+        "case_ids": [],
         "results": [],
         "active_case_id": "",
         "completed": False,
@@ -695,6 +697,8 @@ def start_validation_run(
         "run_id": run_id,
         "run_dir": str(run_dir),
         "case_index": 0,
+        # Store the exact run scope so "one case" and "all cases" stay distinct.
+        "case_ids": [case.id for case in cases],
         "results": [],
         "active_case_id": "",
         "completed": False,
@@ -1251,6 +1255,20 @@ def _render_previous_results(state: dict[str, Any]) -> None:
             )
 
 
+def _case_option_label(case: EvalCase) -> str:
+    badge = "Klarstellung" if case.clarification_expected else "Direkt"
+    return f"{case.id} [{badge}] - {case.question}"
+
+
+def _cases_for_state(state: dict[str, Any], cases: list[EvalCase]) -> list[EvalCase]:
+    """Resolve the validation cases selected when this run was started."""
+    selected_ids = list(state.get("case_ids") or [])
+    if not selected_ids:
+        return cases
+    by_id = {case.id: case for case in cases}
+    return [by_id[case_id] for case_id in selected_ids if case_id in by_id]
+
+
 def record_validation_result(
     state: dict[str, Any],
     result: dict[str, Any],
@@ -1493,21 +1511,28 @@ def render_validation_page(
         return
 
     if not state["started"]:
-        st.markdown("**Aktive Fälle**")
-        for case in cases:
-            badge = "Klarstellung" if case.clarification_expected else "Direkt"
-            st.markdown(f"- **{case.id}** [{badge}]: {case.question}")
+        st.markdown("**Validierung starten**")
+        selected_case = st.selectbox(
+            "Validierungsfall",
+            cases,
+            format_func=_case_option_label,
+            index=0,
+        )
+        with st.expander("Fallliste", expanded=False):
+            for case in cases:
+                badge = "Klarstellung" if case.clarification_expected else "Direkt"
+                st.markdown(f"- **{case.id}** [{badge}]: {case.question}")
         cols = st.columns(2)
-        if cols[0].button("Aktuellen Fall ausführen", use_container_width=True):
+        if cols[0].button("Ausgewählten Fall ausführen", use_container_width=True):
             state = start_validation_run(
                 chatbot_model=chatbot_model,
                 evaluator_model=evaluator_model,
-                cases=cases,
+                cases=[selected_case],
                 pipeline_config=selected_pipeline_config,
             )
             _run_current_case(
                 state=state,
-                case=cases[0],
+                case=selected_case,
                 qdrant=qdrant,
                 dense_embedder=dense_embedder,
                 sparse_embedder=sparse_embedder,
@@ -1515,6 +1540,7 @@ def render_validation_page(
                 openai_client=openai_client,
                 top_k=active_top_k,
             )
+            complete_validation_run(state)
             st.rerun()
         if cols[1].button("Alle Fälle ausführen", use_container_width=True):
             state = start_validation_run(
@@ -1536,15 +1562,23 @@ def render_validation_page(
             st.rerun()
         return
 
+    run_cases = _cases_for_state(state, cases)
+    if not run_cases:
+        st.error("Die gespeicherte Fallauswahl passt nicht mehr zur aktuellen Validierungsdatei.")
+        if st.button("Neue Validierung starten", use_container_width=True):
+            reset_validation_state()
+            st.rerun()
+        return
+
     st.caption(
-        f"Run-ID: `{state['run_id']}` · Fortschritt: {min(state['case_index'] + 1, len(cases))}/{len(cases)}"
+        f"Run-ID: `{state['run_id']}` · Fortschritt: {min(state['case_index'] + 1, len(run_cases))}/{len(run_cases)}"
     )
     _render_previous_results(state)
 
-    if state["completed"] or state["case_index"] >= len(cases):
+    if state["completed"] or state["case_index"] >= len(run_cases):
         state["completed"] = True
         summary = _build_run_summary(state)
-        st.success("Alle Fälle wurden ausgewertet.")
+        st.success("Validierung abgeschlossen.")
         cols = st.columns(2)
         cols[0].metric("Gesamtscore", f"{summary['overall_score']:.1f}/100")
         evidence_overall = summary.get("evidence_overall_score")
@@ -1573,13 +1607,15 @@ def render_validation_page(
             st.info(
                 f"{summary['human_review_recommended_cases']} Fall/Fälle sind für eine fachliche Nachprüfung markiert."
             )
+        if len(state.get("results", [])) == 1:
+            _render_case_result(state["results"][0])
         if st.button("Neue Validierung starten", use_container_width=True):
             reset_validation_state()
             st.rerun()
         return
 
-    case = cases[state["case_index"]]
-    st.subheader(f"{case.id}: Fall {state['case_index'] + 1} von {len(cases)}")
+    case = run_cases[state["case_index"]]
+    st.subheader(f"{case.id}: Fall {state['case_index'] + 1} von {len(run_cases)}")
     st.markdown(f"**Frage:** {case.question}")
     st.caption(
         f"Typ: {'Klarstellung' if case.clarification_expected else 'Direkt'}"
@@ -1611,11 +1647,13 @@ def render_validation_page(
                 openai_client=openai_client,
                 top_k=active_top_k,
             )
+            if len(run_cases) == 1:
+                complete_validation_run(state)
             st.rerun()
         if cols[1].button("Alle Fälle ausführen", use_container_width=True):
             _run_all_cases_from_ui(
                 state=state,
-                cases=cases,
+                cases=run_cases,
                 qdrant=qdrant,
                 dense_embedder=dense_embedder,
                 sparse_embedder=sparse_embedder,
@@ -1631,13 +1669,13 @@ def render_validation_page(
     if cols[0].button("Nächsten Fall laden", use_container_width=True):
         state["case_index"] += 1
         state["active_case_id"] = ""
-        if state["case_index"] >= len(cases):
+        if state["case_index"] >= len(run_cases):
             state["completed"] = True
         st.rerun()
     if cols[1].button("Alle Fälle ausführen", use_container_width=True):
         _run_all_cases_from_ui(
             state=state,
-            cases=cases,
+            cases=run_cases,
             qdrant=qdrant,
             dense_embedder=dense_embedder,
             sparse_embedder=sparse_embedder,
